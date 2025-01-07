@@ -15,6 +15,37 @@ const Index = () => {
     });
   };
 
+  const skills = {
+    design: [
+      "Adobe Photoshop",
+      "Adobe Illustrator",
+      "Adobe XD",
+      "Figma",
+      "UI/UX Design",
+    ],
+    motion: [
+      "After Effects",
+      "Premiere Pro",
+      "Motion Graphics",
+      "Animation",
+      "Video Editing",
+    ],
+    vfx: [
+      "Nuke",
+      "Houdini",
+      "Maya",
+      "Blender",
+      "Compositing",
+    ],
+    development: [
+      "JavaScript",
+      "React",
+      "Node.js",
+      "TypeScript",
+      "Three.js",
+    ]
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -25,7 +56,7 @@ const Index = () => {
               Fabricio Kevin
             </h1>
             <p className="text-xl text-muted-foreground">
-              Professional Portfolio
+              Creative Developer & Motion Designer
             </p>
             <div className="flex gap-4">
               <Button onClick={handleContact}>Contact Me</Button>
@@ -41,76 +72,31 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Experience Section */}
+      {/* Skills Section - Updated with categories */}
       <section className="bg-muted py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8">Experience</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card className="card-hover">
-              <CardHeader>
-                <CardTitle>Senior Developer</CardTitle>
-                <CardDescription>2020 - Present</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p>Leading development teams and architecting solutions.</p>
-              </CardContent>
-            </Card>
-            <Card className="card-hover">
-              <CardHeader>
-                <CardTitle>Full Stack Developer</CardTitle>
-                <CardDescription>2018 - 2020</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p>Building web applications and managing databases.</p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Skills Section */}
-      <section className="container mx-auto px-4 py-16">
-        <h2 className="text-3xl font-bold mb-8">Skills</h2>
-        <ScrollArea className="h-[400px] w-full rounded-md border p-4">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {[
-              "JavaScript",
-              "React",
-              "Node.js",
-              "TypeScript",
-              "Python",
-              "SQL",
-              "AWS",
-              "Docker",
-              "Git",
-            ].map((skill) => (
-              <Badge key={skill} variant="secondary" className="text-lg p-2">
-                {skill}
-              </Badge>
-            ))}
-          </div>
-        </ScrollArea>
-      </section>
-
-      {/* Projects Section */}
-      <section className="bg-muted py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8">Projects</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[1, 2, 3].map((project) => (
-              <Card key={project} className="card-hover">
+          <h2 className="text-3xl font-bold mb-8">Skills & Expertise</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {Object.entries(skills).map(([category, skillList]) => (
+              <Card key={category} className="card-hover">
                 <CardHeader>
-                  <CardTitle>Project {project}</CardTitle>
+                  <CardTitle className="capitalize">{category}</CardTitle>
                   <CardDescription>
-                    A brief description of the project and its impact.
+                    {category === 'design' ? 'Visual Design Tools' :
+                     category === 'motion' ? 'Motion & Animation' :
+                     category === 'vfx' ? 'Visual Effects' : 'Development'}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <img
-                    src={`/src/assets/images/project${project}.jpg`}
-                    alt={`Project ${project}`}
-                    className="w-full h-48 object-cover rounded-md"
-                  />
+                  <ScrollArea className="h-[200px]">
+                    <div className="space-y-2">
+                      {skillList.map((skill) => (
+                        <Badge key={skill} variant="secondary" className="mr-2 mb-2">
+                          {skill}
+                        </Badge>
+                      ))}
+                    </div>
+                  </ScrollArea>
                 </CardContent>
               </Card>
             ))}
@@ -118,34 +104,94 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Contact Section */}
+      {/* Projects Section */}
       <section className="container mx-auto px-4 py-16">
-        <Card className="max-w-2xl mx-auto">
-          <CardHeader>
-            <CardTitle>Get in Touch</CardTitle>
-            <CardDescription>
-              I'm always open to new opportunities and collaborations.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={(e) => {
-              e.preventDefault();
-              handleContact();
-            }} className="space-y-4">
-              <input
-                type="email"
-                placeholder="Your email"
-                className="w-full p-2 rounded-md border"
-              />
-              <textarea
-                placeholder="Your message"
-                className="w-full p-2 rounded-md border h-32"
-              />
-              <Button type="submit">Send Message</Button>
-            </form>
-          </CardContent>
-        </Card>
+        <h2 className="text-3xl font-bold mb-8">Featured Projects</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[1, 2, 3].map((project) => (
+            <Card key={project} className="card-hover">
+              <CardHeader>
+                <CardTitle>Project {project}</CardTitle>
+                <CardDescription>
+                  Creative development & motion design
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <img
+                  src={`/src/assets/images/project${project}.jpg`}
+                  alt={`Project ${project}`}
+                  className="w-full h-48 object-cover rounded-md"
+                />
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </section>
+
+      {/* Contact Section */}
+      <section className="bg-muted py-16">
+        <div className="container mx-auto px-4">
+          <Card className="max-w-2xl mx-auto">
+            <CardHeader>
+              <CardTitle>Get in Touch</CardTitle>
+              <CardDescription>
+                Let's collaborate on your next creative project
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={(e) => {
+                e.preventDefault();
+                handleContact();
+              }} className="space-y-4">
+                <input
+                  type="email"
+                  placeholder="Your email"
+                  className="w-full p-2 rounded-md border"
+                />
+                <textarea
+                  placeholder="Your message"
+                  className="w-full p-2 rounded-md border h-32"
+                />
+                <Button type="submit">Send Message</Button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-background border-t">
+        <div className="container mx-auto px-4 py-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+              <h3 className="font-bold mb-4">Contact</h3>
+              <div className="space-y-2">
+                <p>Email: contact@fabriciokevin.com</p>
+                <p>Location: San Francisco, CA</p>
+              </div>
+            </div>
+            <div>
+              <h3 className="font-bold mb-4">Social</h3>
+              <div className="space-y-2">
+                <a href="#" className="block hover:text-primary">LinkedIn</a>
+                <a href="#" className="block hover:text-primary">Twitter</a>
+                <a href="#" className="block hover:text-primary">Behance</a>
+              </div>
+            </div>
+            <div>
+              <h3 className="font-bold mb-4">Latest Work</h3>
+              <div className="space-y-2">
+                <a href="#" className="block hover:text-primary">Motion Reel 2024</a>
+                <a href="#" className="block hover:text-primary">VFX Breakdown</a>
+                <a href="#" className="block hover:text-primary">Design Portfolio</a>
+              </div>
+            </div>
+          </div>
+          <div className="mt-8 pt-8 border-t text-center text-muted-foreground">
+            <p>&copy; 2024 Fabricio Kevin. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
