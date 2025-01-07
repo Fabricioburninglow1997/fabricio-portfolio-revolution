@@ -15,7 +15,7 @@ export const ProjectCard = ({ project, onClick }: ProjectCardProps) => {
       </CardHeader>
       <CardContent>
         <img
-          src={project.image}
+          src={project.images[0]}
           alt={project.title}
           className="w-full h-48 object-cover rounded-md"
         />

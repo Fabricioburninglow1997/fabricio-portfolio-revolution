@@ -1,7 +1,8 @@
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Project } from "@/types/project";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { Badge } from "./ui/badge";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./ui/carousel";
+import { Comments } from "./Comments";
 
 interface ProjectDialogProps {
   project: Project;
@@ -12,66 +13,69 @@ interface ProjectDialogProps {
 export const ProjectDialog = ({ project, isOpen, onClose }: ProjectDialogProps) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl">
+      <DialogContent className="max-w-4xl">
         <DialogHeader>
           <DialogTitle>{project.title}</DialogTitle>
-          <DialogDescription>{project.description}</DialogDescription>
         </DialogHeader>
-        <ScrollArea className="max-h-[60vh]">
-          <div className="space-y-4">
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full h-64 object-cover rounded-lg"
-            />
-            
-            {project.detailedDescription && (
-              <div className="mt-4">
-                <h3 className="text-lg font-semibold mb-2">About this project</h3>
-                <p className="text-muted-foreground">{project.detailedDescription}</p>
-              </div>
-            )}
+        
+        <Carousel className="w-full max-w-3xl mx-auto">
+          <CarouselContent>
+            {project.images.map((image, index) => (
+              <CarouselItem key={index}>
+                <img
+                  src={image}
+                  alt={`${project.title} - Image ${index + 1}`}
+                  className="w-full h-64 object-cover rounded-lg"
+                />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
 
-            {project.tools && project.tools.length > 0 && (
-              <div className="mt-4">
-                <h3 className="text-lg font-semibold mb-2">Tools & Technologies</h3>
-                <div className="flex flex-wrap gap-2">
-                  {project.tools.map((tool) => (
-                    <Badge key={tool} variant="secondary">
-                      {tool}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-            )}
+        <div className="space-y-4">
+          <p className="text-muted-foreground">{project.detailedDescription}</p>
+          
+          {project.tools && (
+            <div className="flex flex-wrap gap-2">
+              {project.tools.map((tool) => (
+                <Badge key={tool} variant="secondary">
+                  {tool}
+                </Badge>
+              ))}
+            </div>
+          )}
 
-            {project.collaborators && project.collaborators.length > 0 && (
-              <div className="mt-4">
-                <h3 className="text-lg font-semibold mb-2">Collaborators</h3>
-                <div className="space-y-2">
-                  {project.collaborators.map((collaborator) => (
-                    <div key={collaborator.name} className="flex items-center justify-between">
-                      <div>
-                        <p className="font-medium">{collaborator.name}</p>
-                        <p className="text-sm text-muted-foreground">{collaborator.role}</p>
-                      </div>
-                      {collaborator.link && (
-                        <a
-                          href={collaborator.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-primary hover:underline"
-                        >
-                          Portfolio
-                        </a>
-                      )}
-                    </div>
-                  ))}
-                </div>
+          {project.isTeamProject && project.collaborators && (
+            <div className="space-y-2">
+              <h4 className="font-semibold">Collaborators:</h4>
+              <div className="space-y-1">
+                {project.collaborators.map((collaborator) => (
+                  <div key={collaborator.name} className="flex items-center gap-2">
+                    <span className="font-medium">{collaborator.name}</span>
+                    <span className="text-sm text-muted-foreground">- {collaborator.role}</span>
+                    {collaborator.link && (
+                      <a
+                        href={collaborator.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-primary hover:underline"
+                      >
+                        Portfolio
+                      </a>
+                    )}
+                  </div>
+                ))}
               </div>
-            )}
+            </div>
+          )}
+
+          <div className="mt-6">
+            <h4 className="font-semibold mb-4">Comments</h4>
+            <Comments />
           </div>
-        </ScrollArea>
+        </div>
       </DialogContent>
     </Dialog>
   );
