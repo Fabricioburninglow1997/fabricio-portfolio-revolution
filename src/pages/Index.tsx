@@ -17,6 +17,7 @@ const Index = () => {
       description: "I'll get back to you soon.",
     });
   };
+  
 
   const projects: Project[] = [
     {
@@ -355,37 +356,14 @@ const Index = () => {
     },
   ];
 
-  const skills = {
-    design: [
-      "Adobe Photoshop",
-      "Adobe Illustrator",
-      "Adobe XD",
-      "Figma",
-      "UI/UX Design",
-    ],
-    motion: [
-      "After Effects",
-      "Premiere Pro",
-      "Motion Graphics",
-      "Animation",
-      "Video Editing",
-    ],
-    vfx: [
-      "Nuke",
-      "Houdini",
-      "Maya",
-      "Blender",
-      "Compositing",
-    ],
-    development: [
-      "JavaScript",
-      "React",
-      "Node.js",
-      "TypeScript",
-      "Three.js",
-    ]
-  };
 
+  // Skills data
+  const skills = {
+    design: ["UI/UX", "Figma", "Adobe XD", "Photoshop", "Illustrator"],
+    motion: ["After Effects", "Premiere", "Animation", "3D Motion"],
+    vfx: ["Nuke", "Houdini", "Maya", "Compositing"],
+    dev: ["React", "TypeScript", "Three.js", "Node.js"]
+  };
   const reviews = [
     {
       id: 1,
@@ -410,6 +388,8 @@ const Index = () => {
     },
   ];
 
+   
+  
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -436,38 +416,36 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Skills Section */}
-      <section className="bg-muted py-16">
+    
+       {/* Compact Skills Section */}
+       <section className="py-6 md:py-10 bg-muted">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8">Skills & Expertise</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <h2 className="text-2xl font-bold mb-4">Skills & Expertise</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {Object.entries(skills).map(([category, skillList]) => (
               <Card key={category} className="card-hover">
-                <CardHeader>
-                  <CardTitle className="capitalize">{category}</CardTitle>
-                  <CardDescription>
-                    {category === 'design' ? 'Visual Design Tools' :
-                     category === 'motion' ? 'Motion & Animation' :
-                     category === 'vfx' ? 'Visual Effects' : 'Development'}
-                  </CardDescription>
+                <CardHeader className="p-3">
+                  <CardTitle className="capitalize text-base">{category}</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <ScrollArea className="h-[200px]">
-                    <div className="space-y-2">
-                      {skillList.map((skill) => (
-                        <Badge key={skill} variant="secondary" className="mr-2 mb-2">
-                          {skill}
-                        </Badge>
-                      ))}
-                    </div>
-                  </ScrollArea>
+                <CardContent className="p-3 pt-0">
+                  <div className="flex flex-wrap gap-1">
+                    {skillList.slice(0, 3).map((skill) => (
+                      <Badge key={skill} variant="secondary" className="text-xs">
+                        {skill}
+                      </Badge>
+                    ))}
+                    {skillList.length > 3 && (
+                      <Badge variant="outline" className="text-xs">
+                        +{skillList.length - 3}
+                      </Badge>
+                    )}
+                  </div>
                 </CardContent>
               </Card>
             ))}
           </div>
         </div>
       </section>
-
       {/* Projects Section */}
       <ProjectsSection projects={projects} />
 
