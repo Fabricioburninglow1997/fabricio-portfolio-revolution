@@ -5,6 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/components/ui/use-toast";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { ProjectsSection } from "@/components/ProjectsSection";
+import { Project } from "@/types/project";
 
 const Index = () => {
   const { toast } = useToast();
@@ -15,6 +17,280 @@ const Index = () => {
       description: "I'll get back to you soon.",
     });
   };
+
+  const projects: Project[] = [
+    {
+      id: 1,
+      title: "Interactive Web Experience",
+      description: "Dynamic web application with 3D animations",
+      image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&q=80",
+      tools: ["Three.js", "React", "GSAP", "WebGL"],
+      isTeamProject: false,
+      detailedDescription: "An immersive web experience showcasing interactive 3D animations and dynamic content. Built with modern web technologies to deliver smooth performance and engaging user interactions.",
+    },
+    {
+      id: 2,
+      title: "Motion Graphics Showcase",
+      description: "Animated brand stories and visual effects",
+      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80",
+      tools: ["After Effects", "Cinema 4D", "Premiere Pro"],
+      isTeamProject: true,
+      collaborators: [
+        {
+          name: "Sarah Chen",
+          role: "Art Director",
+          link: "https://portfolio.sarahchen.com"
+        },
+        {
+          name: "Mike Ross",
+          role: "Sound Designer",
+          link: "https://mikeross.audio"
+        }
+      ],
+      detailedDescription: "A collection of motion graphics work for various brands, featuring custom animations and visual effects. Collaborated with a talented team to deliver high-impact visual storytelling.",
+    },
+    {
+      id: 3,
+      title: "VFX Compositing Project",
+      description: "High-end visual effects for film",
+      image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&q=80",
+      tools: ["Nuke", "Houdini", "Maya"],
+      isTeamProject: true,
+      collaborators: [
+        {
+          name: "John Doe",
+          role: "VFX Supervisor",
+          link: "https://johndoe.com"
+        }
+      ],
+      detailedDescription: "Worked on high-end visual effects for a feature film, utilizing industry-standard software to create stunning visuals.",
+    },
+    {
+      id: 4,
+      title: "Creative Branding",
+      description: "Innovative branding solutions for startups",
+      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
+      tools: ["Photoshop", "Illustrator"],
+      isTeamProject: false,
+      detailedDescription: "Developed branding strategies and visual identities for various startups, focusing on unique and memorable designs.",
+    },
+    {
+      id: 5,
+      title: "E-commerce Website",
+      description: "User-friendly online shopping experience",
+      image: "https://images.unsplash.com/photo-1517242022020-1a1e1e1e1e1e?auto=format&fit=crop&q=80",
+      tools: ["React", "Node.js", "MongoDB"],
+      isTeamProject: true,
+      collaborators: [
+        {
+          name: "Jane Smith",
+          role: "Frontend Developer",
+          link: "https://janesmith.dev"
+        }
+      ],
+      detailedDescription: "Created a fully functional e-commerce website with a focus on user experience and seamless navigation.",
+    },
+    {
+      id: 6,
+      title: "Mobile App Design",
+      description: "Intuitive mobile application interface",
+      image: "https://images.unsplash.com/photo-1519389950473-47c0d8b3c1e0?auto=format&fit=crop&q=80",
+      tools: ["Figma", "Adobe XD"],
+      isTeamProject: false,
+      detailedDescription: "Designed a mobile application interface that prioritizes user engagement and ease of use.",
+    },
+    {
+      id: 7,
+      title: "Social Media Campaign",
+      description: "Engaging content for social media platforms",
+      image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80",
+      tools: ["Canva", "Photoshop"],
+      isTeamProject: true,
+      collaborators: [
+        {
+          name: "Alice Johnson",
+          role: "Content Strategist",
+          link: "https://alicejohnson.com"
+        }
+      ],
+      detailedDescription: "Developed a comprehensive social media campaign that increased brand awareness and engagement.",
+    },
+    {
+      id: 8,
+      title: "Landing Page Design",
+      description: "High-converting landing page for products",
+      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
+      tools: ["Webflow", "HTML", "CSS"],
+      isTeamProject: false,
+      detailedDescription: "Designed a landing page optimized for conversions, utilizing best practices in UI/UX design.",
+    },
+    {
+      id: 9,
+      title: "Corporate Identity",
+      description: "Complete branding package for businesses",
+      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
+      tools: ["Illustrator", "InDesign"],
+      isTeamProject: true,
+      collaborators: [
+        {
+          name: "Bob Brown",
+          role: "Graphic Designer",
+          link: "https://bobbrown.com"
+        }
+      ],
+      detailedDescription: "Created a comprehensive corporate identity package, including logo design, business cards, and stationery.",
+    },
+    {
+      id: 10,
+      title: "Event Promotion",
+      description: "Creative promotional materials for events",
+      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
+      tools: ["Photoshop", "Illustrator"],
+      isTeamProject: false,
+      detailedDescription: "Designed promotional materials for various events, focusing on eye-catching visuals and effective messaging.",
+    },
+    {
+      id: 11,
+      title: "Product Photography",
+      description: "Stunning visuals for product marketing",
+      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
+      tools: ["Camera", "Photoshop"],
+      isTeamProject: true,
+      collaborators: [
+        {
+          name: "Chris Green",
+          role: "Photographer",
+          link: "https://chrisgreen.com"
+        }
+      ],
+      detailedDescription: "Captured high-quality product images for marketing campaigns, enhancing brand visibility.",
+    },
+    {
+      id: 12,
+      title: "UI/UX Research",
+      description: "User research and testing for better design",
+      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
+      tools: ["UserTesting", "Figma"],
+      isTeamProject: false,
+      detailedDescription: "Conducted user research and testing to inform design decisions and improve user experience.",
+    },
+    {
+      id: 13,
+      title: "Web Application Development",
+      description: "Full-stack development for web applications",
+      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
+      tools: ["React", "Node.js", "Express"],
+      isTeamProject: true,
+      collaborators: [
+        {
+          name: "David White",
+          role: "Backend Developer",
+          link: "https://davidwhite.com"
+        }
+      ],
+      detailedDescription: "Developed a full-stack web application, focusing on performance and scalability.",
+    },
+    {
+      id: 14,
+      title: "Digital Marketing Strategy",
+      description: "Comprehensive marketing strategies for brands",
+      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
+      tools: ["Google Analytics", "SEO"],
+      isTeamProject: false,
+      detailedDescription: "Created and implemented digital marketing strategies that increased online presence and engagement.",
+    },
+    {
+      id: 15,
+      title: "Interactive Prototyping",
+      description: "Creating interactive prototypes for testing",
+      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
+      tools: ["Figma", "InVision"],
+      isTeamProject: true,
+      collaborators: [
+        {
+          name: "Emily Davis",
+          role: "UX Designer",
+          link: "https://emilydavis.com"
+        }
+      ],
+      detailedDescription: "Developed interactive prototypes to test user flows and gather feedback for design improvements.",
+    },
+    {
+      id: 16,
+      title: "Content Creation",
+      description: "High-quality content for various platforms",
+      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
+      tools: ["WordPress", "SEO"],
+      isTeamProject: false,
+      detailedDescription: "Created engaging content for websites and social media, focusing on audience engagement and SEO.",
+    },
+    {
+      id: 17,
+      title: "SEO Optimization",
+      description: "Improving website visibility on search engines",
+      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
+      tools: ["Google Analytics", "SEMrush"],
+      isTeamProject: true,
+      collaborators: [
+        {
+          name: "Laura Black",
+          role: "SEO Specialist",
+          link: "https://laurablack.com"
+        }
+      ],
+      detailedDescription: "Implemented SEO strategies that improved website rankings and increased organic traffic.",
+    },
+    {
+      id: 18,
+      title: "Email Marketing Campaign",
+      description: "Effective email marketing strategies",
+      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
+      tools: ["Mailchimp", "Campaign Monitor"],
+      isTeamProject: false,
+      detailedDescription: "Designed and executed email marketing campaigns that increased engagement and conversions.",
+    },
+    {
+      id: 19,
+      title: "Video Production",
+      description: "Professional video production services",
+      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
+      tools: ["Premiere Pro", "Final Cut Pro"],
+      isTeamProject: true,
+      collaborators: [
+        {
+          name: "Mark Lee",
+          role: "Videographer",
+          link: "https://marklee.com"
+        }
+      ],
+      detailedDescription: "Produced high-quality videos for various clients, focusing on storytelling and visual impact.",
+    },
+    {
+      id: 20,
+      title: "Brand Strategy",
+      description: "Developing brand strategies for growth",
+      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
+      tools: ["Branding", "Market Research"],
+      isTeamProject: false,
+      detailedDescription: "Developed brand strategies that align with business goals and resonate with target audiences.",
+    },
+    {
+      id: 21,
+      title: "User Testing",
+      description: "Conducting user tests for better design",
+      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
+      tools: ["UserTesting", "SurveyMonkey"],
+      isTeamProject: true,
+      collaborators: [
+        {
+          name: "Sophie Turner",
+          role: "UX Researcher",
+          link: "https://sophieturner.com"
+        }
+      ],
+      detailedDescription: "Conducted user testing sessions to gather feedback and improve design usability.",
+    },
+  ];
 
   const skills = {
     design: [
@@ -46,135 +322,6 @@ const Index = () => {
       "Three.js",
     ]
   };
-
-  const projects = [
-    {
-      id: 1,
-      title: "Interactive Web Experience",
-      description: "Dynamic web application with 3D animations",
-      image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&q=80",
-    },
-    {
-      id: 2,
-      title: "Motion Graphics Showcase",
-      description: "Animated brand stories and visual effects",
-      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80",
-    },
-    {
-      id: 3,
-      title: "VFX Compositing Project",
-      description: "High-end visual effects for film",
-      image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&q=80",
-    },
-    {
-      id: 4,
-      title: "Creative Branding",
-      description: "Innovative branding solutions for startups",
-      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
-    },
-    {
-      id: 5,
-      title: "E-commerce Website",
-      description: "User-friendly online shopping experience",
-      image: "https://images.unsplash.com/photo-1517242022020-1a1e1e1e1e1e?auto=format&fit=crop&q=80",
-    },
-    {
-      id: 6,
-      title: "Mobile App Design",
-      description: "Intuitive mobile application interface",
-      image: "https://images.unsplash.com/photo-1519389950473-47c0d8b3c1e0?auto=format&fit=crop&q=80",
-    },
-    {
-      id: 7,
-      title: "Social Media Campaign",
-      description: "Engaging content for social media platforms",
-      image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80",
-    },
-    {
-      id: 8,
-      title: "Landing Page Design",
-      description: "High-converting landing page for products",
-      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
-    },
-    {
-      id: 9,
-      title: "Corporate Identity",
-      description: "Complete branding package for businesses",
-      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
-    },
-    {
-      id: 10,
-      title: "Event Promotion",
-      description: "Creative promotional materials for events",
-      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
-    },
-    {
-      id: 11,
-      title: "Product Photography",
-      description: "Stunning visuals for product marketing",
-      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
-    },
-    {
-      id: 12,
-      title: "UI/UX Research",
-      description: "User research and testing for better design",
-      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
-    },
-    {
-      id: 13,
-      title: "Web Application Development",
-      description: "Full-stack development for web applications",
-      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
-    },
-    {
-      id: 14,
-      title: "Digital Marketing Strategy",
-      description: "Comprehensive marketing strategies for brands",
-      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
-    },
-    {
-      id: 15,
-      title: "Interactive Prototyping",
-      description: "Creating interactive prototypes for testing",
-      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
-    },
-    {
-      id: 16,
-      title: "Content Creation",
-      description: "High-quality content for various platforms",
-      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
-    },
-    {
-      id: 17,
-      title: "SEO Optimization",
-      description: "Improving website visibility on search engines",
-      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
-    },
-    {
-      id: 18,
-      title: "Email Marketing Campaign",
-      description: "Effective email marketing strategies",
-      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
-    },
-    {
-      id: 19,
-      title: "Video Production",
-      description: "Professional video production services",
-      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
-    },
-    {
-      id: 20,
-      title: "Brand Strategy",
-      description: "Developing brand strategies for growth",
-      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
-    },
-    {
-      id: 21,
-      title: "User Testing",
-      description: "Conducting user tests for better design",
-      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
-    },
-  ];
 
   const reviews = [
     {
@@ -259,32 +406,7 @@ const Index = () => {
       </section>
 
       {/* Projects Section */}
-      <section className="container mx-auto px-4 py-16">
-        <h2 className="text-3xl font-bold mb-8">Featured Projects</h2>
-        <Carousel className="w-full max-w-5xl mx-auto">
-          <CarouselContent>
-            {projects.map((project) => (
-              <CarouselItem key={project.id} className="md:basis-1/2 lg:basis-1/3">
-                <Card className="card-hover mx-2">
-                  <CardHeader>
-                    <CardTitle>{project.title}</CardTitle>
-                    <CardDescription>{project.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-48 object-cover rounded-md"
-                    />
-                  </CardContent>
-                </Card>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
-      </section>
+      <ProjectsSection projects={projects} />
 
       {/* Reviews Section */}
       <section className="bg-muted py-16">
