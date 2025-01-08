@@ -4,6 +4,22 @@
 
 **URL**: https://lovable.dev/projects/95bbb3f2-8298-45cb-a03c-aeb3e46e53b3
 
+## Required Setup
+
+1. **EmailJS Configuration**
+   - Sign up at [EmailJS](https://www.emailjs.com/)
+   - Create a new email service
+   - Create an email template with the following variables:
+     - `to_email` (set to: fabricioburning22@gmail.com)
+     - `from_name`
+     - `from_email`
+     - `message`
+   - Get your:
+     - Service ID
+     - Template ID
+     - Public Key
+   - Replace these values in the `Comments.tsx` file
+
 ## How can I edit this code?
 
 There are several ways of editing your application.

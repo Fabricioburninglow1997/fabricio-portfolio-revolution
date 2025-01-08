@@ -11,29 +11,36 @@ const Index = () => {
   const { toast } = useToast();
 
   const handleContact = () => {
-    toast({
-      title: "Thanks for reaching out!",
-      description: "I'll get back to you soon.",
-    });
+    const contactSection = document.getElementById('contact-section');
+    contactSection?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleDownloadCV = () => {
+    const link = document.createElement('a');
+    link.href = '/src/assets/cv/FabricioKevin_CV.pdf';
+    link.download = 'FabricioKevin_CV.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const projects: Project[] = [
     {
       id: 1,
-      title: "Interactive Web Experience",
-      description: "Dynamic web application with 3D animations",
+      title: "Experiencia Web Interactiva",
+      description: "Aplicación web dinámica con animaciones 3D",
       images: [
         "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80"
       ],
       tools: ["Three.js", "React", "GSAP", "WebGL"],
       isTeamProject: false,
-      detailedDescription: "An immersive web experience showcasing interactive 3D animations and dynamic content. Built with modern web technologies to deliver smooth performance and engaging user interactions.",
+      detailedDescription: "Una experiencia web inmersiva que muestra animaciones 3D interactivas y contenido dinámico. Construida con tecnologías web modernas para ofrecer un rendimiento fluido e interacciones atractivas.",
     },
     {
       id: 2,
-      title: "Motion Graphics Showcase",
-      description: "Animated brand stories and visual effects",
+      title: "Muestra de Gráficos en Movimiento",
+      description: "Historias de marca animadas y efectos visuales",
       images: [
         "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&q=80"
@@ -43,21 +50,21 @@ const Index = () => {
       collaborators: [
         {
           name: "Sarah Chen",
-          role: "Art Director",
+          role: "Directora de Arte",
           link: "https://portfolio.sarahchen.com"
         },
         {
           name: "Mike Ross",
-          role: "Sound Designer",
+          role: "Diseñador de Sonido",
           link: "https://mikeross.audio"
         }
       ],
-      detailedDescription: "A collection of motion graphics work for various brands, featuring custom animations and visual effects. Collaborated with a talented team to deliver high-impact visual storytelling.",
+      detailedDescription: "Una colección de trabajos de gráficos en movimiento para varias marcas, con animaciones personalizadas y efectos visuales. Colaboré con un talentoso equipo para ofrecer narraciones visuales de alto impacto.",
     },
     {
       id: 3,
-      title: "VFX Compositing Project",
-      description: "High-end visual effects for film",
+      title: "Proyecto de Composición VFX",
+      description: "Efectos visuales de alta gama para cine",
       images: [
         "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80"
@@ -67,28 +74,28 @@ const Index = () => {
       collaborators: [
         {
           name: "John Doe",
-          role: "VFX Supervisor",
+          role: "Supervisor de VFX",
           link: "https://johndoe.com"
         }
       ],
-      detailedDescription: "Worked on high-end visual effects for a feature film, utilizing industry-standard software to create stunning visuals.",
+      detailedDescription: "Trabajé en efectos visuales de alta gama para una película de largometraje, utilizando software estándar de la industria para crear visuales impresionantes.",
     },
     {
       id: 4,
-      title: "Creative Branding",
-      description: "Innovative branding solutions for startups",
+      title: "Branding Creativo",
+      description: "Soluciones de branding innovadoras para startups",
       images: [
         "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80"
       ],
       tools: ["Photoshop", "Illustrator"],
       isTeamProject: false,
-      detailedDescription: "Developed branding strategies and visual identities for various startups, focusing on unique and memorable designs.",
+      detailedDescription: "Desarrollé estrategias de branding e identidades visuales para varias startups, enfocándome en diseños únicos y memorables.",
     },
     {
       id: 5,
-      title: "E-commerce Website",
-      description: "User-friendly online shopping experience",
+      title: "Sitio Web de Comercio Electrónico",
+      description: "Experiencia de compra en línea fácil de usar",
       images: [
         "https://images.unsplash.com/photo-1517242022020-1a1e1e1e1e1e?auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80"
@@ -98,28 +105,28 @@ const Index = () => {
       collaborators: [
         {
           name: "Jane Smith",
-          role: "Frontend Developer",
+          role: "Desarrolladora Frontend",
           link: "https://janesmith.dev"
         }
       ],
-      detailedDescription: "Created a fully functional e-commerce website with a focus on user experience and seamless navigation.",
+      detailedDescription: "Creé un sitio web de comercio electrónico completamente funcional con un enfoque en la experiencia del usuario y la navegación fluida.",
     },
     {
       id: 6,
-      title: "Mobile App Design",
-      description: "Intuitive mobile application interface",
+      title: "Diseño de Aplicaciones Móviles",
+      description: "Interfaz intuitiva de aplicación móvil",
       images: [
         "https://images.unsplash.com/photo-1519389950473-47c0d8b3c1e0?auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80"
       ],
       tools: ["Figma", "Adobe XD"],
       isTeamProject: false,
-      detailedDescription: "Designed a mobile application interface that prioritizes user engagement and ease of use.",
+      detailedDescription: "Diseñé una interfaz de aplicación móvil que prioriza el compromiso del usuario y la facilidad de uso.",
     },
     {
       id: 7,
-      title: "Social Media Campaign",
-      description: "Engaging content for social media platforms",
+      title: "Campaña en Redes Sociales",
+      description: "Contenido atractivo para plataformas de redes sociales",
       images: [
         "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80"
@@ -129,28 +136,28 @@ const Index = () => {
       collaborators: [
         {
           name: "Alice Johnson",
-          role: "Content Strategist",
+          role: "Estratega de Contenido",
           link: "https://alicejohnson.com"
         }
       ],
-      detailedDescription: "Developed a comprehensive social media campaign that increased brand awareness and engagement.",
+      detailedDescription: "Desarrollé una campaña integral en redes sociales que aumentó la conciencia de marca y el compromiso.",
     },
     {
       id: 8,
-      title: "Landing Page Design",
-      description: "High-converting landing page for products",
+      title: "Diseño de Página de Aterrizaje",
+      description: "Página de aterrizaje de alta conversión para productos",
       images: [
         "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80"
       ],
       tools: ["Webflow", "HTML", "CSS"],
       isTeamProject: false,
-      detailedDescription: "Designed a landing page optimized for conversions, utilizing best practices in UI/UX design.",
+      detailedDescription: "Diseñé una página de aterrizaje optimizada para conversiones, utilizando las mejores prácticas en diseño UI/UX.",
     },
     {
       id: 9,
-      title: "Corporate Identity",
-      description: "Complete branding package for businesses",
+      title: "Identidad Corporativa",
+      description: "Paquete completo de branding para empresas",
       images: [
         "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80"
@@ -160,59 +167,59 @@ const Index = () => {
       collaborators: [
         {
           name: "Bob Brown",
-          role: "Graphic Designer",
+          role: "Diseñador Gráfico",
           link: "https://bobbrown.com"
         }
       ],
-      detailedDescription: "Created a comprehensive corporate identity package, including logo design, business cards, and stationery.",
+      detailedDescription: "Creé un paquete completo de identidad corporativa, que incluye diseño de logotipos, tarjetas de presentación y papelería.",
     },
     {
       id: 10,
-      title: "Event Promotion",
-      description: "Creative promotional materials for events",
+      title: "Promoción de Eventos",
+      description: "Materiales promocionales creativos para eventos",
       images: [
         "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80"
       ],
       tools: ["Photoshop", "Illustrator"],
       isTeamProject: false,
-      detailedDescription: "Designed promotional materials for various events, focusing on eye-catching visuals and effective messaging.",
+      detailedDescription: "Diseñé materiales promocionales para varios eventos, enfocándome en visuales llamativos y mensajes efectivos.",
     },
     {
       id: 11,
-      title: "Product Photography",
-      description: "Stunning visuals for product marketing",
+      title: "Fotografía de Productos",
+      description: "Visuales impresionantes para marketing de productos",
       images: [
         "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80"
       ],
-      tools: ["Camera", "Photoshop"],
+      tools: ["Cámara", "Photoshop"],
       isTeamProject: true,
       collaborators: [
         {
           name: "Chris Green",
-          role: "Photographer",
+          role: "Fotógrafo",
           link: "https://chrisgreen.com"
         }
       ],
-      detailedDescription: "Captured high-quality product images for marketing campaigns, enhancing brand visibility.",
+      detailedDescription: "Capturé imágenes de productos de alta calidad para campañas de marketing, mejorando la visibilidad de la marca.",
     },
     {
       id: 12,
-      title: "UI/UX Research",
-      description: "User research and testing for better design",
+      title: "Investigación UI/UX",
+      description: "Investigación y pruebas de usuarios para un mejor diseño",
       images: [
         "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80"
       ],
       tools: ["UserTesting", "Figma"],
       isTeamProject: false,
-      detailedDescription: "Conducted user research and testing to inform design decisions and improve user experience.",
+      detailedDescription: "Realicé investigaciones y pruebas de usuarios para informar decisiones de diseño y mejorar la experiencia del usuario.",
     },
     {
       id: 13,
-      title: "Web Application Development",
-      description: "Full-stack development for web applications",
+      title: "Desarrollo de Aplicaciones Web",
+      description: "Desarrollo full-stack para aplicaciones web",
       images: [
         "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80"
@@ -222,28 +229,28 @@ const Index = () => {
       collaborators: [
         {
           name: "David White",
-          role: "Backend Developer",
+          role: "Desarrollador Backend",
           link: "https://davidwhite.com"
         }
       ],
-      detailedDescription: "Developed a full-stack web application, focusing on performance and scalability.",
+      detailedDescription: "Desarrollé una aplicación web full-stack, enfocándome en el rendimiento y la escalabilidad.",
     },
     {
       id: 14,
-      title: "Digital Marketing Strategy",
-      description: "Comprehensive marketing strategies for brands",
+      title: "Estrategia de Marketing Digital",
+      description: "Estrategias de marketing integrales para marcas",
       images: [
         "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80"
       ],
       tools: ["Google Analytics", "SEO"],
       isTeamProject: false,
-      detailedDescription: "Created and implemented digital marketing strategies that increased online presence and engagement.",
+      detailedDescription: "Creé e implementé estrategias de marketing digital que aumentaron la presencia y el compromiso en línea.",
     },
     {
       id: 15,
-      title: "Interactive Prototyping",
-      description: "Creating interactive prototypes for testing",
+      title: "Prototipado Interactivo",
+      description: "Creación de prototipos interactivos para pruebas",
       images: [
         "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80"
@@ -253,28 +260,28 @@ const Index = () => {
       collaborators: [
         {
           name: "Emily Davis",
-          role: "UX Designer",
+          role: "Diseñadora UX",
           link: "https://emilydavis.com"
         }
       ],
-      detailedDescription: "Developed interactive prototypes to test user flows and gather feedback for design improvements.",
+      detailedDescription: "Desarrollé prototipos interactivos para probar flujos de usuarios y recopilar comentarios para mejoras de diseño.",
     },
     {
       id: 16,
-      title: "Content Creation",
-      description: "High-quality content for various platforms",
+      title: "Creación de Contenido",
+      description: "Contenido de alta calidad para varias plataformas",
       images: [
         "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80"
       ],
       tools: ["WordPress", "SEO"],
       isTeamProject: false,
-      detailedDescription: "Created engaging content for websites and social media, focusing on audience engagement and SEO.",
+      detailedDescription: "Creé contenido atractivo para sitios web y redes sociales, enfocándome en el compromiso de la audiencia y SEO.",
     },
     {
       id: 17,
-      title: "SEO Optimization",
-      description: "Improving website visibility on search engines",
+      title: "Optimización SEO",
+      description: "Mejorando la visibilidad del sitio web en motores de búsqueda",
       images: [
         "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80"
@@ -284,28 +291,28 @@ const Index = () => {
       collaborators: [
         {
           name: "Laura Black",
-          role: "SEO Specialist",
+          role: "Especialista en SEO",
           link: "https://laurablack.com"
         }
       ],
-      detailedDescription: "Implemented SEO strategies that improved website rankings and increased organic traffic.",
+      detailedDescription: "Implementé estrategias de SEO que mejoraron las clasificaciones del sitio web y aumentaron el tráfico orgánico.",
     },
     {
       id: 18,
-      title: "Email Marketing Campaign",
-      description: "Effective email marketing strategies",
+      title: "Campaña de Email Marketing",
+      description: "Estrategias efectivas de email marketing",
       images: [
         "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80"
       ],
       tools: ["Mailchimp", "Campaign Monitor"],
       isTeamProject: false,
-      detailedDescription: "Designed and executed email marketing campaigns that increased engagement and conversions.",
+      detailedDescription: "Diseñé y ejecuté campañas de email marketing que aumentaron el compromiso y las conversiones.",
     },
     {
       id: 19,
-      title: "Video Production",
-      description: "Professional video production services",
+      title: "Producción de Video",
+      description: "Servicios de producción de video profesional",
       images: [
         "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80"
@@ -315,28 +322,28 @@ const Index = () => {
       collaborators: [
         {
           name: "Mark Lee",
-          role: "Videographer",
+          role: "Videógrafo",
           link: "https://marklee.com"
         }
       ],
-      detailedDescription: "Produced high-quality videos for various clients, focusing on storytelling and visual impact.",
+      detailedDescription: "Produje videos de alta calidad para varios clientes, enfocándome en la narración y el impacto visual.",
     },
     {
       id: 20,
-      title: "Brand Strategy",
-      description: "Developing brand strategies for growth",
+      title: "Estrategia de Marca",
+      description: "Desarrollando estrategias de marca para el crecimiento",
       images: [
         "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80"
       ],
-      tools: ["Branding", "Market Research"],
+      tools: ["Branding", "Investigación de Mercado"],
       isTeamProject: false,
-      detailedDescription: "Developed brand strategies that align with business goals and resonate with target audiences.",
+      detailedDescription: "Desarrollé estrategias de marca que se alinean con los objetivos comerciales y resuenan con las audiencias objetivo.",
     },
     {
       id: 21,
-      title: "User Testing",
-      description: "Conducting user tests for better design",
+      title: "Pruebas de Usuario",
+      description: "Realizando pruebas de usuario para un mejor diseño",
       images: [
         "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80"
@@ -346,11 +353,11 @@ const Index = () => {
       collaborators: [
         {
           name: "Sophie Turner",
-          role: "UX Researcher",
+          role: "Investigadora UX",
           link: "https://sophieturner.com"
         }
       ],
-      detailedDescription: "Conducted user testing sessions to gather feedback and improve design usability.",
+      detailedDescription: "Realicé sesiones de pruebas de usuario para recopilar comentarios y mejorar la usabilidad del diseño.",
     },
   ];
 
@@ -366,23 +373,23 @@ const Index = () => {
     {
       id: 1,
       name: "Sarah Chen",
-      role: "Creative Director",
+      role: "Directora Creativa",
       avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80",
-      comment: "Fabricio's motion design work transformed our brand identity. Exceptional talent!",
+      comment: "El trabajo de diseño de movimiento de Fabricio transformó nuestra identidad de marca. ¡Talento excepcional!",
     },
     {
       id: 2,
       name: "Michael Rodriguez",
-      role: "Production Manager",
+      role: "Gerente de Producción",
       avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80",
-      comment: "Outstanding attention to detail in VFX work. Highly recommended!",
+      comment: "¡Extraordinaria atención al detalle en el trabajo de VFX. ¡Altamente recomendado!",
     },
     {
       id: 3,
       name: "Emma Thompson",
-      role: "Art Director",
+      role: "Directora de Arte",
       avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80",
-      comment: "Brilliant creative solutions and excellent communication throughout the project.",
+      comment: "Brillantes soluciones creativas y excelente comunicación durante todo el proyecto.",
     },
   ];
 
@@ -396,11 +403,11 @@ const Index = () => {
               Fabricio Kevin
             </h1>
             <p className="text-xl text-muted-foreground">
-              Creative Developer & Motion Designer
+              Desarrollador Creativo & Diseñador de Movimiento
             </p>
             <div className="flex gap-4">
-              <Button onClick={handleContact}>Contact Me</Button>
-              <Button variant="outline">Download CV</Button>
+              <Button onClick={handleContact}>Contáctame</Button>
+              <Button variant="outline" onClick={handleDownloadCV}>Descargar CV</Button>
             </div>
           </div>
           <div className="flex-1 flex justify-center">
@@ -415,7 +422,7 @@ const Index = () => {
       {/* Compact Skills Section */}
       <section className="py-6 md:py-10 bg-muted">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold mb-4">Skills & Expertise</h2>
+          <h2 className="text-2xl font-bold mb-4">Habilidades y Experiencia</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {Object.entries(skills).map(([category, skillList]) => (
               <Card key={category} className="card-hover">
@@ -447,7 +454,7 @@ const Index = () => {
       {/* Reviews Section */}
       <section className="bg-muted py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8">Client Reviews</h2>
+          <h2 className="text-3xl font-bold mb-8">Reseñas de Clientes</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {reviews.map((review) => (
               <Card key={review.id} className="card-hover">
@@ -473,13 +480,13 @@ const Index = () => {
       </section>
 
       {/* Contact Section */}
-      <section className="bg-muted py-16">
+      <section id="contact-section" className="bg-muted py-16">
         <div className="container mx-auto px-4">
           <Card className="max-w-2xl mx-auto">
             <CardHeader>
-              <CardTitle>Get in Touch</CardTitle>
+              <CardTitle>Contáctame</CardTitle>
               <CardDescription>
-                Let's collaborate on your next creative project
+                Colaboremos en tu próximo proyecto creativo
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -489,14 +496,14 @@ const Index = () => {
               }} className="space-y-4">
                 <input
                   type="email"
-                  placeholder="Your email"
+                  placeholder="Tu email"
                   className="w-full p-2 rounded-md border"
                 />
                 <textarea
-                  placeholder="Your message"
+                  placeholder="Tu mensaje"
                   className="w-full p-2 rounded-md border h-32"
                 />
-                <Button type="submit">Send Message</Button>
+                <Button type="submit">Enviar Mensaje</Button>
               </form>
             </CardContent>
           </Card>
@@ -508,10 +515,10 @@ const Index = () => {
         <div className="container mx-auto px-4 py-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
-              <h3 className="font-bold mb-4">Contact</h3>
+              <h3 className="font-bold mb-4">Contacto</h3>
               <div className="space-y-2">
-                <p>Email: contact@fabriciokevin.com</p>
-                <p>Location: San Francisco, CA</p>
+                <p>Email: fabricioburning22@gmail.com</p>
+                <p>Ubicación: San Francisco, CA</p>
               </div>
             </div>
             <div>
@@ -523,16 +530,16 @@ const Index = () => {
               </div>
             </div>
             <div>
-              <h3 className="font-bold mb-4">Latest Work</h3>
+              <h3 className="font-bold mb-4">Último Trabajo</h3>
               <div className="space-y-2">
                 <a href="#" className="block hover:text-primary">Motion Reel 2024</a>
                 <a href="#" className="block hover:text-primary">VFX Breakdown</a>
-                <a href="#" className="block hover:text-primary">Design Portfolio</a>
+                <a href="#" className="block hover:text-primary">Portafolio de Diseño</a>
               </div>
             </div>
           </div>
           <div className="mt-8 pt-8 border-t text-center text-muted-foreground">
-            <p>&copy; 2024 Fabricio Kevin. All rights reserved.</p>
+            <p>&copy; 2024 Fabricio Kevin. Todos los derechos reservados.</p>
           </div>
         </div>
       </footer>

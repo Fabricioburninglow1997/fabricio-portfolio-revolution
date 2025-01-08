@@ -21,32 +21,30 @@ export const Comments = () => {
     e.preventDefault();
     
     try {
-      // Send email notification
       await emailjs.send(
-        "service_id", // You'll need to replace with your EmailJS service ID
-        "template_id", // You'll need to replace with your EmailJS template ID
+        "YOUR_SERVICE_ID", // Replace with your EmailJS service ID
+        "YOUR_TEMPLATE_ID", // Replace with your EmailJS template ID
         {
           to_email: "fabricioburning22@gmail.com",
           from_name: newComment.name,
           from_email: newComment.email,
           message: newComment.comment,
         },
-        "your_public_key" // You'll need to replace with your EmailJS public key
+        "YOUR_PUBLIC_KEY" // Replace with your EmailJS public key
       );
 
-      // Add comment to local state
       setComments([...comments, { ...newComment, date: new Date() }]);
       setNewComment({ name: "", email: "", comment: "" });
       
       toast({
-        title: "Comment submitted!",
-        description: "Thank you for your feedback.",
+        title: "¡Comentario enviado!",
+        description: "Gracias por tu feedback.",
       });
     } catch (error) {
       console.error("Error sending comment:", error);
       toast({
         title: "Error",
-        description: "Failed to submit comment. Please try again.",
+        description: "No se pudo enviar el comentario. Por favor, intenta nuevamente.",
         variant: "destructive",
       });
     }
@@ -56,25 +54,25 @@ export const Comments = () => {
     <div className="space-y-6">
       <form onSubmit={handleSubmit} className="space-y-4">
         <Input
-          placeholder="Your name"
+          placeholder="Tu nombre"
           value={newComment.name}
           onChange={(e) => setNewComment({ ...newComment, name: e.target.value })}
           required
         />
         <Input
           type="email"
-          placeholder="Your email"
+          placeholder="Tu email"
           value={newComment.email}
           onChange={(e) => setNewComment({ ...newComment, email: e.target.value })}
           required
         />
         <Textarea
-          placeholder="Leave a comment..."
+          placeholder="Deja un comentario..."
           value={newComment.comment}
           onChange={(e) => setNewComment({ ...newComment, comment: e.target.value })}
           required
         />
-        <Button type="submit">Submit Comment</Button>
+        <Button type="submit">Enviar Comentario</Button>
       </form>
 
       <div className="space-y-4">
