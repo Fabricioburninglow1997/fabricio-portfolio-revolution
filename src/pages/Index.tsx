@@ -4,8 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/components/ui/use-toast";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { ProjectsSection } from "@/components/ProjectsSection";
+import { CategorizedProjects } from "@/components/CategorizedProjects";
 import { Project } from "@/types/project";
 
 const Index = () => {
@@ -17,7 +16,6 @@ const Index = () => {
       description: "I'll get back to you soon.",
     });
   };
-  
 
   const projects: Project[] = [
     {
@@ -356,7 +354,6 @@ const Index = () => {
     },
   ];
 
-
   // Skills data
   const skills = {
     design: ["UI/UX", "Figma", "Adobe XD", "Photoshop", "Illustrator"],
@@ -364,6 +361,7 @@ const Index = () => {
     vfx: ["Nuke", "Houdini", "Maya", "Compositing"],
     dev: ["React", "TypeScript", "Three.js", "Node.js"]
   };
+
   const reviews = [
     {
       id: 1,
@@ -388,8 +386,6 @@ const Index = () => {
     },
   ];
 
-   
-  
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -416,9 +412,8 @@ const Index = () => {
         </div>
       </section>
 
-    
-       {/* Compact Skills Section */}
-       <section className="py-6 md:py-10 bg-muted">
+      {/* Compact Skills Section */}
+      <section className="py-6 md:py-10 bg-muted">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl font-bold mb-4">Skills & Expertise</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -447,7 +442,7 @@ const Index = () => {
         </div>
       </section>
       {/* Projects Section */}
-      <ProjectsSection projects={projects} />
+      <CategorizedProjects projects={projects} />
 
       {/* Reviews Section */}
       <section className="bg-muted py-16">

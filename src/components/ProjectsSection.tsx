@@ -11,9 +11,16 @@ interface ProjectsSectionProps {
 export const ProjectsSection = ({ projects }: ProjectsSectionProps) => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
+  if (projects.length === 0) {
+    return (
+      <div className="text-center py-8 text-muted-foreground">
+        No projects in this category yet.
+      </div>
+    );
+  }
+
   return (
-    <section className="container mx-auto px-4 py-16">
-      <h2 className="text-3xl font-bold mb-8">Featured Projects</h2>
+    <section className="w-full">
       <Carousel className="w-full max-w-5xl mx-auto">
         <CarouselContent>
           {projects.map((project) => (
