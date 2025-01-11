@@ -8,6 +8,7 @@ import { CategorizedProjects } from "@/components/CategorizedProjects";
 import { InstagramGrid } from "@/components/InstagramGrid";
 import { StaffMembers } from "@/components/StaffMembers";
 import { Project } from "@/types/project";
+import { Comments } from "@/components/Comments";
 
 const Index = () => {
   const { toast } = useToast();
@@ -497,13 +498,13 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold mb-12 text-center">Testimonios de Clientes</h2>
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-muted via-transparent to-muted pointer-events-none z-10" />
-            <ScrollArea className="w-full whitespace-nowrap rounded-lg pb-6">
-              <div className="flex space-x-8 px-4">
+            <div className="absolute inset-0 bg-gradient-to-r from-muted via-transparent to-muted pointer-events-none z-10 md:block hidden" />
+            <ScrollArea className="w-full rounded-lg pb-6">
+              <div className="flex flex-col md:flex-row md:space-x-8 space-y-6 md:space-y-0 px-4">
                 {reviews.map((review) => (
                   <Card 
                     key={review.id} 
-                    className="w-[350px] shrink-0 group hover:shadow-xl transition-all duration-500 ease-out hover:scale-105 hover:rotate-1"
+                    className="w-full md:w-[350px] md:shrink-0 group hover:shadow-xl transition-all duration-500 ease-out hover:scale-105 hover:rotate-1"
                   >
                     <CardContent className="p-6">
                       <div className="relative">
@@ -528,6 +529,14 @@ const Index = () => {
               </div>
             </ScrollArea>
           </div>
+        </div>
+      </section>
+
+      {/* Comments Section */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-8 text-center">Deja un Comentario</h2>
+          <Comments />
         </div>
       </section>
 
