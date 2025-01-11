@@ -9,6 +9,7 @@ import { InstagramGrid } from "@/components/InstagramGrid";
 import { StaffMembers } from "@/components/StaffMembers";
 import { Project } from "@/types/project";
 import { Comments } from "@/components/Comments";
+import { LoginDialog } from "@/components/LoginDialog";
 
 const Index = () => {
   const { toast } = useToast();
@@ -493,6 +494,37 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Contact Section */}
+      <section id="contact-section" className="py-16">
+        <div className="container mx-auto px-4">
+          <Card className="max-w-2xl mx-auto">
+            <CardHeader>
+              <CardTitle>Contáctanos</CardTitle>
+              <CardDescription>
+                Hagamos crecer tu negocio juntos
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={(e) => {
+                e.preventDefault();
+                handleContact();
+              }} className="space-y-4">
+                <input
+                  type="email"
+                  placeholder="Tu email"
+                  className="w-full p-2 rounded-md border"
+                />
+                <textarea
+                  placeholder="Tu mensaje"
+                  className="w-full p-2 rounded-md border h-32"
+                />
+                <Button type="submit">Enviar Mensaje</Button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
       {/* Reviews Section */}
       <section className="bg-muted py-16">
         <div className="container mx-auto px-4">
@@ -532,42 +564,14 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Comments Section */}
-      <section className="py-16 bg-background">
+      {/* Comments Button Section */}
+      <section className="py-16 bg-background text-center">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8 text-center">Deja un Comentario</h2>
-          <Comments />
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact-section" className="py-16">
-        <div className="container mx-auto px-4">
-          <Card className="max-w-2xl mx-auto">
-            <CardHeader>
-              <CardTitle>Contáctanos</CardTitle>
-              <CardDescription>
-                Hagamos crecer tu negocio juntos
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={(e) => {
-                e.preventDefault();
-                handleContact();
-              }} className="space-y-4">
-                <input
-                  type="email"
-                  placeholder="Tu email"
-                  className="w-full p-2 rounded-md border"
-                />
-                <textarea
-                  placeholder="Tu mensaje"
-                  className="w-full p-2 rounded-md border h-32"
-                />
-                <Button type="submit">Enviar Mensaje</Button>
-              </form>
-            </CardContent>
-          </Card>
+          <LoginDialog>
+            <Button size="lg" className="font-semibold">
+              Deja un Comentario
+            </Button>
+          </LoginDialog>
         </div>
       </section>
 
