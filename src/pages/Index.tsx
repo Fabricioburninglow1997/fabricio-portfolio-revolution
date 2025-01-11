@@ -6,6 +6,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/components/ui/use-toast";
 import { CategorizedProjects } from "@/components/CategorizedProjects";
 import { InstagramGrid } from "@/components/InstagramGrid";
+import { StaffMembers } from "@/components/StaffMembers";
 import { Project } from "@/types/project";
 
 const Index = () => {
@@ -482,6 +483,14 @@ const Index = () => {
 
       {/* Projects Section */}
       <CategorizedProjects projects={projects} />
+
+      {/* Staff Members Section */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-8 text-center">Nuestro Equipo</h2>
+          <StaffMembers />
+        </div>
+      </section>
 
       {/* Reviews Section */}
       <section className="bg-muted py-16">
