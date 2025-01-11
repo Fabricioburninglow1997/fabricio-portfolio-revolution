@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/components/ui/use-toast";
 import { CategorizedProjects } from "@/components/CategorizedProjects";
+import { InstagramGrid } from "@/components/InstagramGrid";
 import { Project } from "@/types/project";
 
 const Index = () => {
@@ -23,6 +24,63 @@ const Index = () => {
     link.click();
     document.body.removeChild(link);
   };
+
+  const designTriads = [
+    {
+      id: 1,
+      imageUrl: "https://images.unsplash.com/photo-1661956602116-aa6865609028?auto=format&fit=crop&q=80",
+      title: "Branding Corporativo",
+      description: "Diseño de identidad visual"
+    },
+    {
+      id: 2,
+      imageUrl: "https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&q=80",
+      title: "Marketing Digital",
+      description: "Estrategias de redes sociales"
+    },
+    {
+      id: 3,
+      imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80",
+      title: "Diseño Web",
+      description: "Sitios web responsivos"
+    },
+    {
+      id: 4,
+      imageUrl: "https://images.unsplash.com/photo-1542744173-05336fcc7ad4?auto=format&fit=crop&q=80",
+      title: "SEO",
+      description: "Optimización para buscadores"
+    },
+    {
+      id: 5,
+      imageUrl: "https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?auto=format&fit=crop&q=80",
+      title: "Email Marketing",
+      description: "Campañas efectivas"
+    },
+    {
+      id: 6,
+      imageUrl: "https://images.unsplash.com/photo-1542744095-291d1f67b221?auto=format&fit=crop&q=80",
+      title: "Publicidad Digital",
+      description: "Google Ads y Meta Ads"
+    },
+    {
+      id: 7,
+      imageUrl: "https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&q=80",
+      title: "Contenido Digital",
+      description: "Creación y estrategia"
+    },
+    {
+      id: 8,
+      imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80",
+      title: "Analytics",
+      description: "Métricas y reportes"
+    },
+    {
+      id: 9,
+      imageUrl: "https://images.unsplash.com/photo-1542744173-05336fcc7ad4?auto=format&fit=crop&q=80",
+      title: "Social Media",
+      description: "Gestión de redes sociales"
+    }
+  ];
 
   const projects: Project[] = [
     {
@@ -361,35 +419,27 @@ const Index = () => {
     },
   ];
 
-  // Skills data
-  const skills = {
-    design: ["UI/UX", "Figma", "Adobe XD", "Photoshop", "Illustrator"],
-    motion: ["After Effects", "Premiere", "Animation", "3D Motion"],
-    vfx: ["Nuke", "Houdini", "Maya", "Compositing"],
-    dev: ["React", "TypeScript", "Three.js", "Node.js"]
-  };
-
   const reviews = [
     {
       id: 1,
-      name: "Sarah Chen",
-      role: "Directora Creativa",
+      name: "María González",
+      role: "Directora de Marketing",
       avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80",
-      comment: "El trabajo de diseño de movimiento de Fabricio transformó nuestra identidad de marca. ¡Talento excepcional!",
+      comment: "El trabajo de Puch Line transformó completamente nuestra presencia digital. ¡Resultados increíbles!",
     },
     {
       id: 2,
-      name: "Michael Rodriguez",
-      role: "Gerente de Producción",
+      name: "Carlos Rodríguez",
+      role: "CEO Startup",
       avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80",
-      comment: "¡Extraordinaria atención al detalle en el trabajo de VFX. ¡Altamente recomendado!",
+      comment: "Excelente atención y profesionalismo. Superaron todas nuestras expectativas.",
     },
     {
       id: 3,
-      name: "Emma Thompson",
-      role: "Directora de Arte",
+      name: "Ana Torres",
+      role: "Gerente de Marca",
       avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80",
-      comment: "Brillantes soluciones creativas y excelente comunicación durante todo el proyecto.",
+      comment: "Soluciones creativas brillantes y comunicación excepcional durante todo el proyecto.",
     },
   ];
 
@@ -400,61 +450,43 @@ const Index = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex-1 space-y-4">
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-              Fabricio Kevin
+              Puch Line
             </h1>
             <p className="text-xl text-muted-foreground">
-              Desarrollador Creativo & Diseñador de Movimiento
+              Agencia de Marketing Digital & Diseño Creativo
+            </p>
+            <p className="text-lg text-muted-foreground">
+              Transformamos tu visión en resultados digitales extraordinarios
             </p>
             <div className="flex gap-4">
-              <Button onClick={handleContact}>Contáctame</Button>
-              <Button variant="outline" onClick={handleDownloadCV}>Descargar CV</Button>
+              <Button onClick={handleContact}>Contáctanos</Button>
+              <Button variant="outline" onClick={handleDownloadCV}>Descargar Brochure</Button>
             </div>
           </div>
           <div className="flex-1 flex justify-center">
             <Avatar className="w-48 h-48">
-              <AvatarImage src="/src/assets/images/Perfil Fabricio.jpg" alt="Profile" />
-              <AvatarFallback>FK</AvatarFallback>
+              <AvatarImage src="/src/assets/images/Perfil Fabricio.jpg" alt="Puch Line Logo" />
+              <AvatarFallback>PL</AvatarFallback>
             </Avatar>
           </div>
         </div>
       </section>
 
-      {/* Compact Skills Section */}
-      <section className="py-6 md:py-10 bg-muted">
+      {/* Instagram Grid Section */}
+      <section className="py-16 bg-muted">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold mb-4">Habilidades y Experiencia</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {Object.entries(skills).map(([category, skillList]) => (
-              <Card key={category} className="card-hover">
-                <CardHeader className="p-3">
-                  <CardTitle className="capitalize text-base">{category}</CardTitle>
-                </CardHeader>
-                <CardContent className="p-3 pt-0">
-                  <div className="flex flex-wrap gap-1">
-                    {skillList.slice(0, 3).map((skill) => (
-                      <Badge key={skill} variant="secondary" className="text-xs">
-                        {skill}
-                      </Badge>
-                    ))}
-                    {skillList.length > 3 && (
-                      <Badge variant="outline" className="text-xs">
-                        +{skillList.length - 3}
-                      </Badge>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <h2 className="text-3xl font-bold mb-8 text-center">Nuestros Servicios</h2>
+          <InstagramGrid items={designTriads} />
         </div>
       </section>
+
       {/* Projects Section */}
       <CategorizedProjects projects={projects} />
 
       {/* Reviews Section */}
       <section className="bg-muted py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8">Reseñas de Clientes</h2>
+          <h2 className="text-3xl font-bold mb-8">Testimonios de Clientes</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {reviews.map((review) => (
               <Card key={review.id} className="card-hover">
@@ -480,13 +512,13 @@ const Index = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact-section" className="bg-muted py-16">
+      <section id="contact-section" className="py-16">
         <div className="container mx-auto px-4">
           <Card className="max-w-2xl mx-auto">
             <CardHeader>
-              <CardTitle>Contáctame</CardTitle>
+              <CardTitle>Contáctanos</CardTitle>
               <CardDescription>
-                Colaboremos en tu próximo proyecto creativo
+                Hagamos crecer tu negocio juntos
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -522,24 +554,24 @@ const Index = () => {
               </div>
             </div>
             <div>
-              <h3 className="font-bold mb-4">Social</h3>
+              <h3 className="font-bold mb-4">Redes Sociales</h3>
               <div className="space-y-2">
                 <a href="#" className="block hover:text-primary">LinkedIn</a>
-                <a href="#" className="block hover:text-primary">Twitter</a>
+                <a href="#" className="block hover:text-primary">Instagram</a>
                 <a href="#" className="block hover:text-primary">Behance</a>
               </div>
             </div>
             <div>
-              <h3 className="font-bold mb-4">Último Trabajo</h3>
+              <h3 className="font-bold mb-4">Servicios</h3>
               <div className="space-y-2">
-                <a href="#" className="block hover:text-primary">Motion Reel 2024</a>
-                <a href="#" className="block hover:text-primary">VFX Breakdown</a>
-                <a href="#" className="block hover:text-primary">Portafolio de Diseño</a>
+                <a href="#" className="block hover:text-primary">Marketing Digital</a>
+                <a href="#" className="block hover:text-primary">Diseño Gráfico</a>
+                <a href="#" className="block hover:text-primary">Desarrollo Web</a>
               </div>
             </div>
           </div>
           <div className="mt-8 pt-8 border-t text-center text-muted-foreground">
-            <p>&copy; 2024 Fabricio Kevin. Todos los derechos reservados.</p>
+            <p>&copy; 2024 Puch Line. Todos los derechos reservados.</p>
           </div>
         </div>
       </footer>
