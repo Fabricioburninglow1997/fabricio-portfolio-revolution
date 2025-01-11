@@ -495,27 +495,38 @@ const Index = () => {
       {/* Reviews Section */}
       <section className="bg-muted py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8">Testimonios de Clientes</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {reviews.map((review) => (
-              <Card key={review.id} className="card-hover">
-                <CardHeader>
-                  <div className="flex items-center gap-4">
-                    <Avatar>
-                      <AvatarImage src={review.avatar} alt={review.name} />
-                      <AvatarFallback>{review.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <CardTitle className="text-lg">{review.name}</CardTitle>
-                      <CardDescription>{review.role}</CardDescription>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{review.comment}</p>
-                </CardContent>
-              </Card>
-            ))}
+          <h2 className="text-3xl font-bold mb-12 text-center">Testimonios de Clientes</h2>
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-muted via-transparent to-muted pointer-events-none z-10" />
+            <ScrollArea className="w-full whitespace-nowrap rounded-lg pb-6">
+              <div className="flex space-x-8 px-4">
+                {reviews.map((review) => (
+                  <Card 
+                    key={review.id} 
+                    className="w-[350px] shrink-0 group hover:shadow-xl transition-all duration-500 ease-out hover:scale-105 hover:rotate-1"
+                  >
+                    <CardContent className="p-6">
+                      <div className="relative">
+                        <div className="absolute -top-2 -left-2 text-4xl text-primary opacity-30">"</div>
+                        <p className="text-muted-foreground mb-6 pt-4 italic">
+                          {review.comment}
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-4 mt-4 border-t pt-4">
+                        <Avatar className="w-12 h-12 border-2 border-primary group-hover:scale-110 transition-transform duration-300">
+                          <AvatarImage src={review.avatar} alt={review.name} />
+                          <AvatarFallback>{review.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <p className="font-semibold">{review.name}</p>
+                          <p className="text-sm text-muted-foreground">{review.role}</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </ScrollArea>
           </div>
         </div>
       </section>
