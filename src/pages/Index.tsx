@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/components/ui/use-toast";
 import { CategorizedProjects } from "@/components/CategorizedProjects";
@@ -10,22 +9,50 @@ import { StaffMembers } from "@/components/StaffMembers";
 import { Project } from "@/types/project";
 import { Comments } from "@/components/Comments";
 import { LoginDialog } from "@/components/LoginDialog";
+import emailjs from '@emailjs/browser';
+import { useEffect } from "react";
+import { Moon, Sun } from "lucide-react";
+import { Toggle } from "@/components/ui/toggle";
 
 const Index = () => {
   const { toast } = useToast();
 
-  const handleContact = () => {
-    const contactSection = document.getElementById('contact-section');
-    contactSection?.scrollIntoView({ behavior: 'smooth' });
+  // Initialize EmailJS
+  useEffect(() => {
+    emailjs.init("0Sh1oDgRj8WerGL-y");
+  }, []);
+
+  const handleContact = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    
+    try {
+      await emailjs.sendForm(
+        'service_h2zdgr4',
+        'template_0rqo64a',
+        form as unknown as HTMLFormElement,
+        '0Sh1oDgRj8WerGL-y'
+      );
+      
+      toast({
+        title: "Mensaje enviado",
+        description: "Nos pondremos en contacto contigo pronto.",
+      });
+      
+      form.reset();
+    } catch (error) {
+      console.error('Error sending email:', error);
+      toast({
+        title: "Error",
+        description: "Hubo un problema al enviar el mensaje. Por favor, intenta nuevamente.",
+        variant: "destructive",
+      });
+    }
   };
 
-  const handleDownloadCV = () => {
-    const link = document.createElement('a');
-    link.href = '/src/assets/cv/FabricioKevin_CV.pdf';
-    link.download = 'FabricioKevin_CV.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  const toggleDarkMode = () => {
+    document.documentElement.classList.toggle('dark');
+    console.log('Dark mode toggled');
   };
 
   const designTriads = [
@@ -448,6 +475,18 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Dark Mode Toggle */}
+      <div className="fixed top-4 right-4 z-50">
+        <Toggle 
+          aria-label="Toggle dark mode"
+          onClick={toggleDarkMode}
+          className="hover:bg-accent"
+        >
+          <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+        </Toggle>
+      </div>
+
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-16 md:py-24">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
@@ -463,7 +502,14 @@ const Index = () => {
             </p>
             <div className="flex gap-4">
               <Button onClick={handleContact}>Contáctanos</Button>
-              <Button variant="outline" onClick={handleDownloadCV}>Descargar Brochure</Button>
+              <Button variant="outline" onClick={() => {
+                const link = document.createElement('a');
+                link.href = '/src/assets/cv/FabricioKevin_CV.pdf';
+                link.download = 'FabricioKevin_CV.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+              }}>Descargar Brochure</Button>
             </div>
           </div>
           <div className="flex-1 flex justify-center">
@@ -505,18 +551,19 @@ const Index = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <form onSubmit={(e) => {
-                e.preventDefault();
-                handleContact();
-              }} className="space-y-4">
+              <form onSubmit={handleContact} className="space-y-4">
                 <input
                   type="email"
+                  name="user_email"
                   placeholder="Tu email"
                   className="w-full p-2 rounded-md border"
+                  required
                 />
                 <textarea
+                  name="message"
                   placeholder="Tu mensaje"
                   className="w-full p-2 rounded-md border h-32"
+                  required
                 />
                 <Button type="submit">Enviar Mensaje</Button>
               </form>
