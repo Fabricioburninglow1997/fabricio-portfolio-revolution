@@ -22,7 +22,12 @@ const Index = () => {
     emailjs.init("0Sh1oDgRj8WerGL-y");
   }, []);
 
-  const handleContact = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleContactClick = () => {
+    const contactSection = document.getElementById('contact-section');
+    contactSection?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     
@@ -501,7 +506,7 @@ const Index = () => {
               Transformamos tu visión en resultados digitales extraordinarios
             </p>
             <div className="flex gap-4">
-              <Button onClick={handleContact}>Contáctanos</Button>
+              <Button onClick={handleContactClick}>Contáctanos</Button>
               <Button variant="outline" onClick={() => {
                 const link = document.createElement('a');
                 link.href = '/src/assets/cv/FabricioKevin_CV.pdf';
@@ -551,7 +556,7 @@ const Index = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleContact} className="space-y-4">
+              <form onSubmit={handleContactSubmit} className="space-y-4">
                 <input
                   type="email"
                   name="user_email"
