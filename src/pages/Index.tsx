@@ -1,23 +1,18 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { useToast } from "@/components/ui/use-toast";
-import { CategorizedProjects } from "@/components/CategorizedProjects";
-import { InstagramGrid } from "@/components/InstagramGrid";
-import { StaffMembers } from "@/components/StaffMembers";
-import { Project } from "@/types/project";
-import { Comments } from "@/components/Comments";
-import { LoginDialog } from "@/components/LoginDialog";
-import emailjs from '@emailjs/browser';
 import { useEffect } from "react";
 import { Moon, Sun } from "lucide-react";
 import { Toggle } from "@/components/ui/toggle";
+import { LoginDialog } from "@/components/LoginDialog";
+import { Button } from "@/components/ui/button";
+import { InstagramGrid } from "@/components/InstagramGrid";
+import { CategorizedProjects } from "@/components/CategorizedProjects";
+import { StaffMembers } from "@/components/StaffMembers";
+import { HeroSection } from "@/components/HeroSection";
+import { ContactSection } from "@/components/ContactSection";
+import { ReviewsSection } from "@/components/ReviewsSection";
+import { FooterSection } from "@/components/FooterSection";
+import emailjs from '@emailjs/browser';
 
 const Index = () => {
-  const { toast } = useToast();
-
-  // Initialize EmailJS
   useEffect(() => {
     emailjs.init("0Sh1oDgRj8WerGL-y");
   }, []);
@@ -25,34 +20,6 @@ const Index = () => {
   const handleContactClick = () => {
     const contactSection = document.getElementById('contact-section');
     contactSection?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    
-    try {
-      await emailjs.sendForm(
-        'service_h2zdgr4',
-        'template_0rqo64a',
-        form as unknown as HTMLFormElement,
-        '0Sh1oDgRj8WerGL-y'
-      );
-      
-      toast({
-        title: "Mensaje enviado",
-        description: "Nos pondremos en contacto contigo pronto.",
-      });
-      
-      form.reset();
-    } catch (error) {
-      console.error('Error sending email:', error);
-      toast({
-        title: "Error",
-        description: "Hubo un problema al enviar el mensaje. Por favor, intenta nuevamente.",
-        variant: "destructive",
-      });
-    }
   };
 
   const toggleDarkMode = () => {
@@ -117,7 +84,7 @@ const Index = () => {
     }
   ];
 
-  const projects: Project[] = [
+  const projects = [
     {
       id: 1,
       title: "Experiencia Web Interactiva",
@@ -492,39 +459,7 @@ const Index = () => {
         </Toggle>
       </div>
 
-      {/* Hero Section */}
-      <section className="container mx-auto px-4 py-16 md:py-24">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="flex-1 space-y-4">
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-              Puch Line
-            </h1>
-            <p className="text-xl text-muted-foreground">
-              Agencia de Marketing Digital & Diseño Creativo
-            </p>
-            <p className="text-lg text-muted-foreground">
-              Transformamos tu visión en resultados digitales extraordinarios
-            </p>
-            <div className="flex gap-4">
-              <Button onClick={handleContactClick}>Contáctanos</Button>
-              <Button variant="outline" onClick={() => {
-                const link = document.createElement('a');
-                link.href = '/src/assets/cv/FabricioKevin_CV.pdf';
-                link.download = 'FabricioKevin_CV.pdf';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-              }}>Descargar Brochure</Button>
-            </div>
-          </div>
-          <div className="flex-1 flex justify-center">
-            <Avatar className="w-48 h-48">
-              <AvatarImage src="/src/assets/images/Perfil Fabricio.jpg" alt="Puch Line Logo" />
-              <AvatarFallback>PL</AvatarFallback>
-            </Avatar>
-          </div>
-        </div>
-      </section>
+      <HeroSection onContactClick={handleContactClick} />
 
       {/* Instagram Grid Section */}
       <section className="py-16 bg-muted">
@@ -534,7 +469,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Projects Section */}
       <CategorizedProjects projects={projects} />
 
       {/* Staff Members Section */}
@@ -545,76 +479,9 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact-section" className="py-16">
-        <div className="container mx-auto px-4">
-          <Card className="max-w-2xl mx-auto">
-            <CardHeader>
-              <CardTitle>Contáctanos</CardTitle>
-              <CardDescription>
-                Hagamos crecer tu negocio juntos
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleContactSubmit} className="space-y-4">
-                <input
-                  type="email"
-                  name="user_email"
-                  placeholder="Tu email"
-                  className="w-full p-2 rounded-md border"
-                  required
-                />
-                <textarea
-                  name="message"
-                  placeholder="Tu mensaje"
-                  className="w-full p-2 rounded-md border h-32"
-                  required
-                />
-                <Button type="submit">Enviar Mensaje</Button>
-              </form>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
+      <ContactSection />
 
-      {/* Reviews Section */}
-      <section className="bg-muted py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-12 text-center">Testimonios de Clientes</h2>
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-muted via-transparent to-muted pointer-events-none z-10 md:block hidden" />
-            <ScrollArea className="w-full rounded-lg pb-6">
-              <div className="flex flex-col md:flex-row md:space-x-8 space-y-6 md:space-y-0 px-4">
-                {reviews.map((review) => (
-                  <Card 
-                    key={review.id} 
-                    className="w-full md:w-[350px] md:shrink-0 group hover:shadow-xl transition-all duration-500 ease-out hover:scale-105 hover:rotate-1"
-                  >
-                    <CardContent className="p-6">
-                      <div className="relative">
-                        <div className="absolute -top-2 -left-2 text-4xl text-primary opacity-30">"</div>
-                        <p className="text-muted-foreground mb-6 pt-4 italic">
-                          {review.comment}
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-4 mt-4 border-t pt-4">
-                        <Avatar className="w-12 h-12 border-2 border-primary group-hover:scale-110 transition-transform duration-300">
-                          <AvatarImage src={review.avatar} alt={review.name} />
-                          <AvatarFallback>{review.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
-                        </Avatar>
-                        <div>
-                          <p className="font-semibold">{review.name}</p>
-                          <p className="text-sm text-muted-foreground">{review.role}</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </ScrollArea>
-          </div>
-        </div>
-      </section>
+      <ReviewsSection reviews={reviews} />
 
       {/* Comments Button Section */}
       <section className="py-16 bg-background text-center">
@@ -627,39 +494,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-background border-t">
-        <div className="container mx-auto px-4 py-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="font-bold mb-4">Contacto</h3>
-              <div className="space-y-2">
-                <p>Email: fabricioburning22@gmail.com</p>
-                <p>Ubicación: San Francisco, CA</p>
-              </div>
-            </div>
-            <div>
-              <h3 className="font-bold mb-4">Redes Sociales</h3>
-              <div className="space-y-2">
-                <a href="#" className="block hover:text-primary">LinkedIn</a>
-                <a href="#" className="block hover:text-primary">Instagram</a>
-                <a href="#" className="block hover:text-primary">Behance</a>
-              </div>
-            </div>
-            <div>
-              <h3 className="font-bold mb-4">Servicios</h3>
-              <div className="space-y-2">
-                <a href="#" className="block hover:text-primary">Marketing Digital</a>
-                <a href="#" className="block hover:text-primary">Diseño Gráfico</a>
-                <a href="#" className="block hover:text-primary">Desarrollo Web</a>
-              </div>
-            </div>
-          </div>
-          <div className="mt-8 pt-8 border-t text-center text-muted-foreground">
-            <p>&copy; 2024 Puch Line. Todos los derechos reservados.</p>
-          </div>
-        </div>
-      </footer>
+      <FooterSection />
     </div>
   );
 };
