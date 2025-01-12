@@ -32,25 +32,25 @@ export const CategorizedProjects = ({ projects }: CategorizedProjectsProps) => {
   );
 
   return (
-    <section className="container mx-auto px-4 py-16">
-      <h2 className="text-3xl font-bold mb-8">Featured Projects</h2>
+    <section className="container mx-auto px-4 py-16 dark:bg-slate-900/50 rounded-lg backdrop-blur-sm">
+      <h2 className="text-3xl font-bold mb-8 dark:text-white">Featured Projects</h2>
       <Tabs defaultValue="design" className="w-full">
-        <TabsList className="grid w-full grid-cols-4">
-          <TabsTrigger value="design">Design</TabsTrigger>
-          <TabsTrigger value="motion">Motion</TabsTrigger>
-          <TabsTrigger value="vfx">VFX</TabsTrigger>
-          <TabsTrigger value="dev">Dev</TabsTrigger>
+        <TabsList className="grid w-full grid-cols-4 dark:bg-slate-800/70">
+          <TabsTrigger value="design" className="dark:data-[state=active]:bg-slate-700">Design</TabsTrigger>
+          <TabsTrigger value="motion" className="dark:data-[state=active]:bg-slate-700">Motion</TabsTrigger>
+          <TabsTrigger value="vfx" className="dark:data-[state=active]:bg-slate-700">VFX</TabsTrigger>
+          <TabsTrigger value="dev" className="dark:data-[state=active]:bg-slate-700">Dev</TabsTrigger>
         </TabsList>
-        <TabsContent value="design">
+        <TabsContent value="design" className="dark:bg-slate-800/30 p-4 rounded-lg mt-4">
           <ProjectsSection projects={designProjects} />
         </TabsContent>
-        <TabsContent value="motion">
+        <TabsContent value="motion" className="dark:bg-slate-800/30 p-4 rounded-lg mt-4">
           <ProjectsSection projects={motionProjects} />
         </TabsContent>
-        <TabsContent value="vfx">
+        <TabsContent value="vfx" className="dark:bg-slate-800/30 p-4 rounded-lg mt-4">
           <ProjectsSection projects={vfxProjects} />
         </TabsContent>
-        <TabsContent value="dev">
+        <TabsContent value="dev" className="dark:bg-slate-800/30 p-4 rounded-lg mt-4">
           <ProjectsSection projects={devProjects} />
         </TabsContent>
       </Tabs>
