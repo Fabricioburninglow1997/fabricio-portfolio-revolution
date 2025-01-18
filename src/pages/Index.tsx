@@ -461,6 +461,8 @@ const Index = () => {
 
       <HeroSection onContactClick={handleContactClick} />
 
+      <CategorizedProjects projects={projects} />
+
       {/* Instagram Grid Section */}
       <section className="py-16 bg-muted">
         <div className="container mx-auto px-4">
@@ -469,8 +471,6 @@ const Index = () => {
         </div>
       </section>
 
-      <CategorizedProjects projects={projects} />
-
       {/* Staff Members Section */}
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
@@ -478,6 +478,8 @@ const Index = () => {
           <StaffMembers />
         </div>
       </section>
+
+      <BrandBadges />
 
       <ContactSection />
 
